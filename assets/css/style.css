@@ -3,9 +3,16 @@
   margin: 0;
   padding: 0;
 }
+/*The :root pseudo-class targets the top-most parent element (most likely the <html> element).
+By placing the variable definitions under the :root selector, all elements throughout the HTML will have access to the variables.*/
+:root {
+  --primary-color: #fce138;
+  --secondary-color: #024e76;
+  --tertiary-color: #39a6b2;
+}
 
 body {
-  color: #39a6b2;
+  color: var(--tertiary-color);
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -17,7 +24,7 @@ header {
   position: sticky;
   top: 0;
   padding: 20px 35px;
-  background-color: #39a6b2;
+  background-color: var(--tertiary-color);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -26,19 +33,23 @@ header {
   background-position: center;
   background-attachment: fixed; /* We need the background images of these two elements to essentially be in the same place. By using the declaration background-attachment: fixed;, it places the image relative to the viewport instead of the element. must be applied to both header and hero. */
   background-position: 80%;
+  z-index: 9999; 
+  /*The z-index property specifies the stack order of an element. 
+  An element with greater stack order is always in front of an element with a lower stack order.
+  z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky) and flex items.*/
 }
 
 header h1 {
   font-weight: bold;
   margin: 0;
   font-size: 36px;
-  color: #fce138;
+  color: var(--primary-color);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 header a {
   text-decoration: none;
-  color: #fce138;
+  color: var(--primary-color);
 }
 
 header nav {
@@ -53,11 +64,17 @@ header nav ul {
   list-style: none;
 }
 
-header nav ul li a:hover {
+header nav ul li a {
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 10px 15px;
   font-weight: lighter;
   font-size: 1.55vw;
+}
+header nav ul li a:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 15px;
+  text-shadow: none;
 }
 
 /* HEADER / NAVBAR STYLES END */
@@ -66,7 +83,7 @@ header nav ul li a:hover {
 
 /* FOOTER STYLES START */
 footer {
-  background: #fce138;
+  background: var(--primary-color);
   padding: 40px 35px;
   display: flex;
   justify-content: space-between;
@@ -75,7 +92,7 @@ footer {
 }
 
 footer h2 {
-  color: #024e76;
+  color: var(--secondary-color);
   font-size: 30px;
   margin: 0;
 }
@@ -86,7 +103,7 @@ footer div {
 }
 
 footer a {
-  color: #024e76;
+  color: var(--secondary-color);
 }
 /* END FOOTER STYLES */
 
@@ -121,15 +138,15 @@ section {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* The first 0 means that there is no horizontal offset, so the shadow will start at the left side of the text. The second 0 indicates no vertical offset. The value 10px defines the radius, or size, of the blur. Finally, rgba(0, 0, 0, 0.5) sets the color to black at half transparency. */
   font-style: italic;
   font-size: 55px;
-  color: #fce138;
+  color: var(--primary-color);
 }
 
 .hero-form {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  border: 3px solid #024e76;
+  border: 3px solid var(--secondary-color);
   background-color: rgba(252,225,56,0.8); 
   padding: 20px;
-  color: #024e76;
+  color: var(--secondary-color);
   width: 40%;
   margin: 3.5%;
   border-radius: 15px;
@@ -145,11 +162,11 @@ section {
 
 .form-input {
   border-radius: 10px;
-  border: 1px solid #024e76;
+  border: 1px solid var(--secondary-color);
   display: block;
   padding: 7px 15px;
   font-size: 16px;
-  color: #024e76;
+  color: var(--secondary-color);
   width: 100%;
   margin-bottom: 15px; 
   background-color: rgba(255,255,255,0.75);
@@ -163,13 +180,16 @@ section {
   margin: 0 5px;
 }
 
-.hero-form button:hover {
-    border-radius: 10px;
-  color: #fce138;
-  background-color: #024e76;
+.hero-form button {
+  border-radius: 10px;
+  color: var(--primary-color);
   border: none;
   padding: 10px 20px;
   font-size: 16px;
+}
+
+.hero-form button:hover {
+  background-color: var(--secondary-color);
 } 
 /* HERO STYLES END */
 
@@ -178,7 +198,7 @@ section {
 .section-title {
   font-size: 48px;
   border-bottom: 3px solid;
-  color: #024e76;
+  color: var(--secondary-color);
   padding-bottom: 20px;
   text-align: center;
   margin: 0 auto 35px auto;
@@ -186,11 +206,11 @@ section {
 }
 
 .primary-border {
-  border-color: #fce138;
+  border-color: var(--primary-color);
 }
 
 .secondary-border {
-  border-color: #39a6b2;
+  border-color: var(--tertiary-color);
 }
 /* SECTION TITLE STYLES END */
 
@@ -198,7 +218,7 @@ section {
 
 .intro p {
   line-height: 1.7;
-  color: #39a6b2;
+  color: var(--tertiary-color);
   width: 80%;
   margin: 0 auto;
   font-size: 20px;
@@ -209,7 +229,7 @@ section {
 
 /* WHAT YOU DO STYLES START */
 .steps { 
-  background: #fce138;
+  background: var(--primary-color);
 }
 
 .step {
@@ -220,7 +240,7 @@ section {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #39a6b2;
+  border-bottom: 1px solid var(--tertiary-color);
 }
 
 .step:last-child { /*The.step:last-child selector means that the CSS declarations will only apply to an element with class step that's also the last element in whatever container it's in.*/
@@ -229,10 +249,9 @@ section {
 /* the (first-child) selects first child in the section*/
 /* the(:nth-child) selects every even numbered child in the <section>*/
 
-}
 
 .step h3 {
-  color: #024e76;
+  color: var(--secondary-color);
   font-size: 46px;
   flex: 1 30%;
 }
@@ -258,14 +277,14 @@ section {
 }
 
 .step-text p {
-  color: #39a6b2;
+  color: var(--tertiary-color);
   font-size: 18px;
 }
 
 .step-text h4 {
   font-size: 26px;
   line-height: 1.5;
-  color: #024e76;
+  color: var(--secondary-color);
 }
 
 /* WHAT YOU DO STYLES END */
@@ -282,8 +301,8 @@ section {
 .trainer {
   margin: 20px;
   flex: 1;
-  background: #024e76;
-  color: #fce138;
+  background: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .trainer img {
@@ -312,11 +331,11 @@ section {
 
 /* REACH OUT STYLES START */
 .contact {
-  background: #024e76;
+  background: var(--secondary-color);
 }
 
 .contact h2 {
-  color: #fce138;
+  color: var(--primary-color);
 }
 
 .contact-info {
@@ -339,7 +358,7 @@ section {
 }
 
 .contact-info h3 {
-  color: #fce138;
+  color: var(--primary-color);
   font-size: 32px;
 }
 
@@ -352,11 +371,11 @@ section {
 
 .contact-form input, .contact-form textarea {
     border-radius: 10px;
-  border: 1px solid #024e76;
+  border: 1px solid var(--secondary-color);
   display: block;
   padding: 7px 15px;
   font-size: 16px;
-  color: #024e76;
+  color: var(--secondary-color);
   width: 100%;
   margin-bottom: 15px;
   margin-top: 5px;
@@ -371,15 +390,15 @@ section {
     border-radius: 10px;
   width: 100%;
   border: none;
-  background: #fce138;
-  color: #024e76;
+  background: var(--primary-color);
+  color: var(--secondary-color);
   text-align: center;
   padding: 15px 0;
   font-size: 16px;
 }
 
 .contact-info a {
-  color: #fce138;
+  color: var(--primary-color);
 }
 
 
@@ -505,4 +524,61 @@ section {
   .contact-form {
     order: 3;
   }
+}
+.checkbox-wrapper input, .radio-wrapper input {
+  opacity: 0;
+}
+.checkbox-wrapper label, .radio-wrapper label {
+  position: relative;
+  left: 10px;
+  margin: 10px;
+  line-height: 1.6;
+}
+/* The ::before pseudo-element lets us inject content into an element using CSS. It places this content before everything else that currently resides in the element. */
+/* Here, we left the actual content property empty but used additional CSS properties to create a white square with a blue border. then used absolute positioning to move this box on top of invisible, original input element. */
+.checkbox-wrapper label::before, .radio-wrapper label::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  background: rgba(255, 255, 255, 0.75);  
+  border: 1px solid var(--secondary-color);  
+  position: absolute;
+  top: -4px;
+  left: -30px;
+}
+/*Setting border-radius to 50% is a quick way to turn an element into a perfectly round circle or oval.*/
+.radio-wrapper label::before {
+  border-radius: 50%;
+}
+/* this is to define how the buttons display when checked, or clicked. */
+.radio-wrapper label::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  position: absolute;
+  left: -29px;
+  top: -3px;
+  background-image: radial-gradient(circle, #39a6b2, var(--secondary-color));
+}
+
+.checkbox-wrapper label::after {
+  content: "";
+  height: 6px;
+  width: 14px;
+  border-left: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  position: absolute;
+  left: -26px;
+  top: 1px;
+  transform: rotate(-58deg); /*we can rotate this L just enough to make it look more like a checkmark.*/
+}
+/* If the radio buttons or checkboxes are in their default state, they'll have no ::after pseudo content*/
+.checkbox-wrapper input + label::after, .radio-wrapper input + label::after {
+  content: none;
+}
+/*As soon as an input becomes :checked, however, the content and all of the other styles defined earlier will take effect*/
+.checkbox-wrapper input:checked + label::after, .radio-wrapper input:checked + label::after {
+  content: "";
 }
